@@ -34,6 +34,8 @@ mkdir -p ${LOCAL_BACKUP_DIR}/${DATE_FORMAT}
 
 LOCAL_DIR=${LOCAL_BACKUP_DIR}/${DATE_FORMAT}
 REMOTE_DIR=s3://${S3_BUCKET_NAME}/${S3_BUCKET_PATH}
+REMOTE_DIR_DRIVE="1VS-_VYXzB0wHPi_2xuduiePTgh-41FZH"
+
 
 for db in $DATABASES; do
    mysqldump \
@@ -44,6 +46,8 @@ for db in $DATABASES; do
         --single-transaction ${db} | gzip -9 > ${LOCAL_DIR}/${db}-${DATE_FORMAT}.sql.gz
 
         aws s3 cp ${LOCAL_DIR}/${db}-${DATE_FORMAT}.sql.gz ${REMOTE_DIR}/${DATE_FORMAT}/
+	gdrive upload --parent ${REMOTE_DIR_DRIVE} ${LOCAL_DIR}/${db}-${DATE_FORMAT}.sql.gz
+
 done
 
 DBDELDATE=`date +"${DATE_FORMAT}" --date="${BACKUP_RETAIN_DAYS} days ago"`
