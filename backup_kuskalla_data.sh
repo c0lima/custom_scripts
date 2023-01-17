@@ -1,5 +1,7 @@
 #!/bin/sh
 
+
+
 # Path to local backup directory
 LOCAL_DATA_DIR="/home/factoria/Desktop/plataforma-kuskalla/data"
 LOCAL_BACKUP_DIR="/home/factoria/.backup/kuskalla"
