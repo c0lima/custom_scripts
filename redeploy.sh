@@ -4,7 +4,7 @@
 #### ROUTES ####
 ################
 
-plataforma_kuskalla="/srv/www/kuskalla.cplus.cl/"
+plataforma_kuskalla="/srv/www/kuskalla/"
 
 if [ $1 = "plataforma_kuskalla" ]; then folder=$plataforma_kuskalla; fi
 
